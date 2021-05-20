@@ -1,0 +1,243 @@
+<!-- Top navigation -->
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0">
+    </a>
+  </nav>
+  
+  <!-- Sidebar navigation -->
+  <div class="container-fluid" style = "margin-left: 15vh;">
+    <div class="row">
+  
+      <nav class="col-md-2 d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/dashboard">
+                <i class="fas fa-user"></i>User Profile
+              </a>
+            </li>
+            <!-- Calling SignOut() Api from AuthService -->
+            <li class="nav-item">
+              <a class="nav-link" (click)="authService.SignOut()">
+                <i class="fas fa-sign-out-alt"></i>Log out
+              </a>
+            </li>
+             <!-- Go to market -->
+            <li class="nav-item">
+              <a class="nav-link active" routerLink="/market">
+                <i class="fas fa-sign-out-alt"></i>Market  
+              </a>
+            </li>
+  
+             <!-- Go to Order -->
+             <li class="nav-item">
+              <a class="nav-link" routerLink="/orders">
+                <i class="fas fa-sign-out-alt"></i>Open Orders  
+              </a>
+            </li>
+  
+          </ul>
+        </div>
+      </nav>
+  
+      <!-- Main content -->
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="inner-adjust">
+  
+          <div class="pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Market</h1>
+          </div>
+          <!-- Show user data when logged in -->
+          <div class="row" >
+            <div class="col-md-12">
+              <div class="media">
+                <div class="media-body">
+                  <!-- <p>Orders: id {{o?.id}} seller {{o?.seller}} buyer {{o?.buyer}} bitcoinAmount {{o?.bitcoinAmount}}
+                      bitcoinPrice {{o?.bitcoinPrice}} currency {{o?.currency}} startTime {{o?.startDateTime}} endTime {{o?.endDateTime}}
+                      status {{o?.status}} type {{o?.type}}
+                  </p> -->
+                
+                    <!-- <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"> -->
+                <div class="container bootstrap snippets bootdey">
+                    <div class="col-md-9 col-sm-8 content" style ="width: 100%;">
+                     
+                        
+                            <div class="col-md-12">
+                                <div class="panel panel-info panel-shadow">
+                                    <div class="panel-heading">
+                                        <h3>
+                                            Market Price: $45
+                                        </h3>
+                                    </div>
+                                    <div class="panel-body"> 
+                                        <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>Qty</th>
+                                                <th>Price</th>
+                                                <!-- <th>Buying Qty</th> -->
+                                                <th>Total</th>
+                                                <th>Service fee</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <!-- <td><img src="https://via.placeholder.com/400x200/FFB6C1/000000" class="img-cart"></td> -->
+                                                    <td><strong>Bitcoin </strong><p>Selling member : taylor</p></td>
+                            
+                                                    <td>4</td>
+                                                    <td>$64.00</td>
+                                                    <!-- <td>
+                                                        <form class="form-inline">
+                                                            <input class="form-control" type="text" value="1">
+                                                            <button class="btn btn-default" ><i class="fa fa-plus"></i></button>
+                                                            <a href="#" class="btn btn-primary" rel="tooltip" ><i class="fa fa-trash-o"></i></a>
+                                                        </form>
+                                                    </td> -->
+                                                    <td>$258.00</td>
+                                                    <td>$2.00</td>
+                                                </tr>
+                                                <tr>
+                                                    <!-- <td><img src="https://via.placeholder.com/400x200/87CEFA/000000" class="img-cart"></td> -->
+                                                    <td><strong>Bitcoin</strong><p>Selling member : bob</p></td>
+                                                   
+                                                    <td>1</td>
+                                                    <td>$32.00</td>
+                                                    <!-- <td>
+                                                        <form class="form-inline">
+                                                            <input class="form-control" type="text" value="2">
+                                                            <button class="btn btn-default" ><i class="fa fa-plus"></i></button>
+                                                             <a href="#" class="btn btn-primary" rel="tooltip" ><i class="fa fa-trash-o"></i></a> 
+                                                        </form>
+                                                    </td> -->
+                                                    <td>$34.00</td>
+                                                    <td>$2.00</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6">&nbsp;</td>
+                                                </tr>
+
+                                                <!-- <tr>
+                                                    <td colspan="4" class="text-right">Service fee</td>
+                                                    <td>$2.00</td>
+                                                </tr> -->
+
+                                                <!-- <tr>
+                                                    <td colspan="4" class="text-right">Total Product</td>
+                                                    <td>$86.00</td>
+                                                </tr>
+                                               
+                                                <tr>
+                                                    <td colspan="4" class="text-right"><strong>Total</strong></td>
+                                                    <td>$88.00</td>
+                                                </tr> -->
+                                            </tbody>
+                                        </table>
+
+
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>Selling Type</th>
+                                                <th>Selling Qty</th>
+                                                <th>Selling Price</th>
+                                               
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>                            
+                                                    <td>
+                                                        <form class="form-inline">
+                                                            <input class="form-control" type="text" value="limit Order">
+                                                        </form>
+                                                    </td>
+
+                                                    <td>
+                                                        <form class="form-inline">
+                                                            <input class="form-control" type="text" value="1">
+                                                        </form>
+                                                    </td>
+
+                                          
+                                                    <td>
+                                                        <form class="form-inline">
+                                                            <input class="form-control" type="text" value="$64.00">
+                                                            <button class="btn btn-default" ><i class="fa fa-plus"></i></button>
+                                                            <!-- <a href="#" class="btn btn-primary" rel="tooltip" ><i class="fa fa-trash-o"></i></a> -->
+                                                        </form>
+                                                    </td>
+                                                   
+                                                </tr>
+                                               
+                                            </tbody>
+                                        </table>
+
+
+                                    </div>
+
+                                       <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>Buying Type</th>
+                                                <th>Buying Qty</th>
+                                                <th>Buying Price</th>
+                                               
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>                            
+                                                    <td>
+                                                        <form class="form-inline">
+                                                            <input class="form-control" type="text" value="limit Order">
+                                                        </form>
+                                                    </td>
+
+                                                    <td>
+                                                        <form class="form-inline">
+                                                            <input class="form-control" type="text" value="1">
+                                                        </form>
+                                                    </td>
+
+                                          
+                                                    <td>
+                                                        <form class="form-inline">
+                                                            <input class="form-control" type="text" value="$64.00">
+                                                            <button class="btn btn-default" ><i class="fa fa-plus"></i></button>
+                                                            <!-- <a href="#" class="btn btn-primary" rel="tooltip" ><i class="fa fa-trash-o"></i></a> -->
+                                                        </form>
+                                                    </td>
+                                                   
+                                                </tr>
+                                               
+                                            </tbody>
+                                        </table>
+                                </div>
+                                </div>
+
+                                
+                                <!-- <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Continue Shopping</a>
+                                <a href="#" class="btn btn-primary pull-right">Next<span class="glyphicon glyphicon-chevron-right"></span></a> -->
+                            </div>
+                       
+                    </div>
+                </div>
+
+
+
+                </div> <!--<div class="media-body"> end-->
+              </div>
+            </div>
+          </div>
+  
+  
+        </div>
+      </main>
+  
+    </div>
+  </div>
+  
+
+  

@@ -1,0 +1,163 @@
+<!-- Top navigation -->
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0">
+    </a>
+  </nav>
+  
+  <!-- Sidebar navigation -->
+  <div class="container-fluid" style = "margin-left: 15vh;">
+    <div class="row">
+  
+      <nav class="col-md-2 d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/dashboard">
+                <i class="fas fa-user"></i>User Profile
+              </a>
+            </li>
+            <!-- Calling SignOut() Api from AuthService -->
+            <li class="nav-item">
+              <a class="nav-link" (click)="authService.SignOut()">
+                <i class="fas fa-sign-out-alt"></i>Log out
+              </a>
+            </li>
+             <!-- Go to market -->
+            <li class="nav-item">
+              <a class="nav-link" (click)="authService.marketPage()">
+                <i class="fas fa-sign-out-alt"></i>Market  
+              </a>
+            </li>
+  
+             <!-- Go to Order -->
+             <li class="nav-item">
+              <a class="nav-link active" routerLink="/orders">
+                <i class="fas fa-sign-out-alt"></i>Open Orders 
+              </a>
+            </li>
+  
+          </ul>
+        </div>
+      </nav>
+  
+      <!-- Main content -->
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="inner-adjust">
+  
+          <div class="pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Open Orders</h1>
+          </div>
+          <!-- Show user data when logged in -->
+          <div class="row" >
+            <div class="col-md-12">
+              <div class="media">
+                <div class="media-body">
+                  <!-- <p>Orders: id {{o?.id}} seller {{o?.seller}} buyer {{o?.buyer}} bitcoinAmount {{o?.bitcoinAmount}}
+                      bitcoinPrice {{o?.bitcoinPrice}} currency {{o?.currency}} startTime {{o?.startDateTime}} endTime {{o?.endDateTime}}
+                      status {{o?.status}} type {{o?.type}}
+                  </p> -->
+
+                    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+                    
+                    <div class="container bootdey">
+                        <div class="panel panel-default panel-order">
+                            <div class="panel-heading">
+                                <strong>Open Orders</strong>
+                                <div class="btn-group pull-right">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">Filter history <i class="fa fa-filter"></i></button>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="#">Approved orders</a></li>
+                                            <li><a href="#">Pending orders</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngFor = "let order of orders" class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-1"><img src="https://bootdey.com/img/Content/user_3.jpg" class="media-object img-thumbnail" /></div>
+                                    <div class="col-md-11">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="pull-right"><label class="label label-danger">status {{order?.status}}</label></div>
+                                                <span><strong>Order number</strong></span> <span class="label label-info">{{order.id}}</span><br />
+                                                Bitcoin Quantity : {{order?.bitcoinAmount}}, cost: ${{order?.bitcoinPrice}} <br />
+                                                <!-- <a data-placement="top" class="btn btn-success btn-xs glyphicon glyphicon-ok" href="#" title="View"></a>
+                                                <a data-placement="top" class="btn btn-danger btn-xs glyphicon glyphicon-trash" href="#" title="Danger"></a>
+                                                <a data-placement="top" class="btn btn-info btn-xs glyphicon glyphicon-usd" href="#" title="Danger"></a> -->
+                                            </div>
+                                            <div class="col-md-12">order startTime: {{order?.startDateTime}} endTime: {{order?.endDateTime}} by <a href="#">{{order?.seller}}</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="row">
+                                    <div class="col-md-1"><img src="https://bootdey.com/img/Content/user_1.jpg" class="media-object img-thumbnail" /></div>
+                                    <div class="col-md-11">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="pull-right"><label class="label label-info">pending</label></div>
+                                                <span><strong>Order number</strong></span> <span class="label label-info">group name</span><br />
+                                                Quantity : 12, cost: $12623.13<br />
+                                                <a data-placement="top" class="btn btn-success btn-xs glyphicon glyphicon-ok" href="#" title="View"></a>
+                                                <a data-placement="top" class="btn btn-danger btn-xs glyphicon glyphicon-trash" href="#" title="Danger"></a>
+                                                <a data-placement="top" class="btn btn-info btn-xs glyphicon glyphicon-usd" href="#" title="Danger"></a>
+                                            </div>
+                                            <div class="col-md-12">order made on: 06/12/2014 by <a href="#">Jane Doe </a></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-1"><img src="https://bootdey.com/img/Content/user_3.jpg" class="media-object img-thumbnail" /></div>
+                                    <div class="col-md-11">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="pull-right"><label class="label label-success">Approved</label></div>
+                                                <span><strong>Order name</strong></span> <span class="label label-info">group name</span><br />
+                                                Quantity : 4, cost: $523.13<br />
+                                                <a data-placement="top" class="btn btn-success btn-xs glyphicon glyphicon-ok" href="#" title="View"></a>
+                                                <a data-placement="top" class="btn btn-danger btn-xs glyphicon glyphicon-trash" href="#" title="Danger"></a>
+                                                <a data-placement="top" class="btn btn-info btn-xs glyphicon glyphicon-usd" href="#" title="Danger"></a>
+                                            </div>
+                                            <div class="col-md-12">order made on: 06/20/2014 by <a href="#">Jane Doe</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-1"><img src="https://bootdey.com/img/Content/user_2.jpg" class="media-object img-thumbnail" /></div>
+                                    <div class="col-md-11">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="pull-right"><label class="label label-info">pending</label></div>
+                                                <span><strong>Order name</strong></span> <span class="label label-info">group name</span><br />
+                                                Quantity : 4, cost: $523.13<br />
+                                                <a data-placement="top" class="btn btn-success btn-xs glyphicon glyphicon-ok" href="#" title="View"></a>
+                                                <a data-placement="top" class="btn btn-danger btn-xs glyphicon glyphicon-trash" href="#" title="Danger"></a>
+                                                <a data-placement="top" class="btn btn-info btn-xs glyphicon glyphicon-usd" href="#" title="Danger"></a>
+                                            </div>
+                                            <div class="col-md-12">order made on: 06/20/2014 by <a href="#">Jane Doe</a></div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div class="panel-footer">bitcoiner</div>
+                        </div>
+                    </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+  
+  
+        </div>
+      </main>
+  
+    </div>
+  </div>
+  
+
+  
