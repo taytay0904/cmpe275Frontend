@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { BankAccount } from 'src/app/shared/services/bankAccount';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { BackEndUser } from 'src/app/shared/services/backEndUser';
 
 
 @Component({
@@ -39,13 +40,33 @@ export class DashboardComponent implements OnInit {
   }
 
   public updateBank(addBankForm: NgForm): void{
-    console.log("html update" + addBankForm.value);
+    document.getElementById('add-bank-form').click();
+     console.log("addBankForm update" + addBankForm);
     this.authService.updateBank(addBankForm.value).subscribe(
       (response:BankAccount) => {
-        console.log("update" + response);
+        console.log("update!!!!! addBankForm" + response);
+        this.getBankAccount();
+        addBankForm.reset();
       },
       (error: HttpErrorResponse)=>{
         alert(error.message);
+        addBankForm.reset();
+      });
+    
+  }
+
+  public createUser(addBankForm: NgForm): void{
+    document.getElementById('add-bank-form').click();
+     console.log("createUser update" + addBankForm);
+    this.authService.createUser(addBankForm.value).subscribe(
+      (response:BackEndUser) => {
+        console.log("update!!!!! addBankForm" + response);
+        this.getBankAccount();
+        addBankForm.reset();
+      },
+      (error: HttpErrorResponse)=>{
+        alert(error.statusText);
+        addBankForm.reset();
       });
     
   }

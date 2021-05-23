@@ -82,13 +82,16 @@
                                                 <th>Service fee</th>
                                             </tr>
                                             </thead>
-                                            <tbody>
+
+                                           
+
+                                            <tbody *ngFor = "let order of openOrders">
                                                 <tr>
                                                     <!-- <td><img src="https://via.placeholder.com/400x200/FFB6C1/000000" class="img-cart"></td> -->
-                                                    <td><strong>Bitcoin </strong><p>Selling member : taylor</p></td>
+                                                    <td><strong>Bitcoin </strong><p>Selling member : {{order?.id}}</p></td>
                             
-                                                    <td>4</td>
-                                                    <td>$64.00</td>
+                                                    <td>{{order.bitcoinAmount}}</td>
+                                                    <td>${{order.bitcoinPrice}}</td>
                                                     <!-- <td>
                                                         <form class="form-inline">
                                                             <input class="form-control" type="text" value="1">
@@ -96,26 +99,19 @@
                                                             <a href="#" class="btn btn-primary" rel="tooltip" ><i class="fa fa-trash-o"></i></a>
                                                         </form>
                                                     </td> -->
-                                                    <td>$258.00</td>
+                                                    <td>${{order.bitcoinAmount * order.bitcoinPrice}}</td>
                                                     <td>$2.00</td>
                                                 </tr>
-                                                <tr>
-                                                    <!-- <td><img src="https://via.placeholder.com/400x200/87CEFA/000000" class="img-cart"></td> -->
+                                                <!-- <tr>
                                                     <td><strong>Bitcoin</strong><p>Selling member : bob</p></td>
                                                    
                                                     <td>1</td>
                                                     <td>$32.00</td>
-                                                    <!-- <td>
-                                                        <form class="form-inline">
-                                                            <input class="form-control" type="text" value="2">
-                                                            <button class="btn btn-default" ><i class="fa fa-plus"></i></button>
-                                                             <a href="#" class="btn btn-primary" rel="tooltip" ><i class="fa fa-trash-o"></i></a> 
-                                                        </form>
-                                                    </td> -->
+                                             
                                                     <td>$34.00</td>
                                                     <td>$2.00</td>
 
-                                                </tr>
+                                                </tr> -->
                                                 <tr>
                                                     <td colspan="6">&nbsp;</td>
                                                 </tr>
@@ -143,38 +139,54 @@
                                             <tr>
                                                 <th>Selling Type</th>
                                                 <th>Selling Qty</th>
+                                                <th>Currency Type</th>
                                                 <th>Selling Price</th>
                                                
                                             </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>                            
-                                                    <td>
-                                                        <form class="form-inline">
-                                                            <input class="form-control" type="text" value="limit Order">
+                                                    <!-- <td>
+                                                        <form class="form-inline"  #addOrderForm = "ngForm" (ngSubmit) = "sellOrder(addOrderForm)">
+                                                            <select class="form-control"  ngModel name= "type" id = "type">
+                                                              <option selected="selected" value="limitOrder">Limit Order</option>
+                                                              <option value="marketOrder">Market Order</option> 
+                                                            </select>
                                                         </form>
                                                     </td>
 
                                                     <td>
-                                                        <form class="form-inline">
-                                                            <input class="form-control" type="text" value="1">
+                                                        <form class="form-inline" #addOrderForm = "ngForm" (ngSubmit) = "sellOrder(addOrderForm)">
+                                                            <input class="form-control" type="text" ngModel name= "bitcoinAmount" id = "bitcoinAmount">
                                                         </form>
+                                                    </td>
+
+                                                    <td>
+                                                      <form class="form-inline" #addOrderForm = "ngForm" (ngSubmit) = "sellOrder(addOrderForm)">
+                                                        <select class="form-control" ngModel name= "currency" id = "currency">
+                                                          <option selected="selected" value="USD">USD</option>
+                                                          <option value="EUR">EUR</option> 
+                                                          <option value="GBP">GBP</option> 
+                                                          <option value="INR">INR</option> 
+                                                          <option value="RMB">RMB</option> 
+                                                        </select>
+                                                      </form>
                                                     </td>
 
                                           
                                                     <td>
-                                                        <form class="form-inline">
-                                                            <input class="form-control" type="text" value="$64.00">
-                                                            <button class="btn btn-default" ><i class="fa fa-plus"></i></button>
-                                                            <!-- <a href="#" class="btn btn-primary" rel="tooltip" ><i class="fa fa-trash-o"></i></a> -->
+                                                        <form class="form-inline"  #addOrderForm = "ngForm" (ngSubmit) = "sellOrder(addOrderForm)">
+                                                            <input class="form-control" type="text" value="$64.00"  ngModel name= "bitcoinPrice" id = "bitcoinPrice">
+                                                            <button class="btn btn-default" id="sellOrder-form" ><i class="fa fa-plus"></i></button>
                                                         </form>
-                                                    </td>
+                                                    </td> -->
                                                    
                                                 </tr>
                                                
                                             </tbody>
                                         </table>
 
+                                       
 
                                     </div>
 
@@ -183,6 +195,7 @@
                                             <tr>
                                                 <th>Buying Type</th>
                                                 <th>Buying Qty</th>
+                                                <th>Currency Type</th>
                                                 <th>Buying Price</th>
                                                
                                             </tr>
@@ -190,22 +203,37 @@
                                             <tbody>
                                                 <tr>                            
                                                     <td>
-                                                        <form class="form-inline">
-                                                            <input class="form-control" type="text" value="limit Order">
+                                                      <form class="form-inline" #addOrderForm = "ngForm" (ngSubmit) = "buyOrder(addOrderForm)">
+                                                        <select class="form-control"  name= "type" id = "type">
+                                                          <option selected="selected" value="limitOrder">Limit Order</option>
+                                                          <option value="marketOrder">Market Order</option> 
+                                                        </select>
+                                                    </form>
+                                                    </td>
+
+                                                    <td>
+                                                        <form class="form-inline" #addOrderForm = "ngForm" (ngSubmit) = "buyOrder(addOrderForm)">
+                                                            <input class="form-control" type="text" name= "bitcoinAmount" id = "bitcoinAmount">
                                                         </form>
                                                     </td>
 
                                                     <td>
-                                                        <form class="form-inline">
-                                                            <input class="form-control" type="text" value="1">
-                                                        </form>
+                                                      <form class="form-inline" #addOrderForm = "ngForm" (ngSubmit) = "buyOrder(addOrderForm)">
+                                                        <select class="form-control"  name= "currency" id = "currency">
+                                                          <option selected="selected" value="USD">USD</option>
+                                                          <option value="EUR">EUR</option> 
+                                                          <option value="GBP">GBP</option> 
+                                                          <option value="INR">INR</option> 
+                                                          <option value="RMB">RMB</option> 
+                                                        </select>
+                                                      </form>
                                                     </td>
 
                                           
                                                     <td>
-                                                        <form class="form-inline">
-                                                            <input class="form-control" type="text" value="$64.00">
-                                                            <button class="btn btn-default" ><i class="fa fa-plus"></i></button>
+                                                        <form class="form-inline" #addOrderForm = "ngForm" (ngSubmit) = "buyOrder(addOrderForm)">
+                                                            <input class="form-control" type="text" name= "bitcoinPrice" id = "bitcoinPrice">
+                                                            <button class="btn btn-default" id="buyOrder-form" ><i class="fa fa-plus"></i></button>
                                                             <!-- <a href="#" class="btn btn-primary" rel="tooltip" ><i class="fa fa-trash-o"></i></a> -->
                                                         </form>
                                                     </td>
@@ -216,6 +244,94 @@
                                         </table>
                                 </div>
                                 </div>
+
+
+                                  <!-- id: Int32Array;
+                                            seller: Int32Array;
+                                            buyer: Int32Array;
+                                            bitcoinAmount: Float32Array;
+                                            bitcoinPrice: Float32Array;
+                                            currency:String;
+                                            startDateTime: String;
+                                            endDateTime: String;
+                                            status: String; open fullfiled cancel
+                                            type: String; -->
+
+
+
+
+                                <table class="table">
+                                  <thead>
+                                  <tr>
+                                      <th>Selling </th>
+                                      <th>Buying </th>
+                                  </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr>                            
+                                          <td>
+                                              <form class="form-group" #sellOrderForm ="ngForm" (ngSubmit) = "sellOrder(sellOrderForm)">
+                                                
+
+                                                <select class="form-group" ngModel name= "type" id = "type">
+                                                    <option selected="selected" value="limitOrder">Limit Order</option>
+                                                    <option value="marketOrder">Market Order</option> 
+                                                </select>
+
+
+                                                <input class="form-group" type="text" ngModel name= "bitcoinAmount" id = "bitcoinAmount">
+
+
+                                                <select class="fform-group" ngModel name= "currency" id = "currency">
+                                                  <option selected="selected" value="USD">USD</option>
+                                                  <option value="EUR">EUR</option> 
+                                                  <option value="GBP">GBP</option> 
+                                                  <option value="INR">INR</option> 
+                                                  <option value="RMB">RMB</option> 
+                                                </select>
+
+                                                  <input class="form-group" type="text" ngModel name= "bitcoinPrice" id = "bitcoinPrice">
+                                                  <button class="btn btn-default" id="sellOrder-form" addtype= "submit"><i class="fa fa-plus"></i>SELL</button>
+
+
+                                              </form>
+                                          </td>
+
+                                         
+
+                                
+                                          <td>
+                                            <form class="form-group"  #buyOrderForm = "ngForm" (ngSubmit) = "buyOrder(buyOrderForm)">
+                                                  
+                                              <select class="form-control"  name= "type" id = "type">
+                                                  <option selected="selected" value="limitOrder">Limit Order</option>
+                                                  <option value="marketOrder">Market Order</option> 
+                                                </select>
+
+
+                                                <input class="form-control" type="text" name= "bitcoinAmount" id = "bitcoinAmount">
+
+
+                                                <select class="form-control"  name= "currency" id = "currency">
+                                                  <option selected="selected" value="USD">USD</option>
+                                                  <option value="EUR">EUR</option> 
+                                                  <option value="GBP">GBP</option> 
+                                                  <option value="INR">INR</option> 
+                                                  <option value="RMB">RMB</option> 
+                                                </select>
+
+                                                <input class="form-control" type="text" value="$64.00"  name= "bitcoinPrice" id = "bitcoinPrice">
+                                                <button class="btn btn-default" id="buyOrder-form" ><i class="fa fa-plus"></i>BUY</button>
+
+
+                                            </form>
+                                             
+                                          </td>
+                                         
+                                      </tr>
+                                     
+                                  </tbody>
+                              </table>
 
                                 
                                 <!-- <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Continue Shopping</a>

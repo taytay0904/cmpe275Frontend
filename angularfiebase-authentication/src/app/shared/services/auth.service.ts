@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { BankAccount } from './bankAccount';
+import { BackEndUser } from './backEndUser';
 
 @Injectable({
   providedIn: 'root'
@@ -145,7 +146,7 @@ export class AuthService {
     });
   }
 
-  public getUserID(user){
+  public getUserID(){
     // firebase.default.auth().onAuthStateChanged(user => {
     //   if(user){
     //     return user.uid;
@@ -158,9 +159,12 @@ export class AuthService {
 
   public getUserEmail(){
     const user = JSON.parse(localStorage.getItem('user'));
-    //console.log("!!!!!!!!!!!!!" + user.email);
-   // return firebase.default.auth().currentUser.email;
     return user.email;
+  }
+
+  public getUserName(){
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user.displayName;
   }
 
   public getUserData(uid){
@@ -191,7 +195,27 @@ export class AuthService {
 
 
   updateBank(bank: BankAccount): Observable<BankAccount> {
-    console.log("bank updated " + bank);
-    return this.http.put<BankAccount>(`${this.apiServerUrl}/appUser/update`, bank);
+    console.log("bank updated IN SERVICE FILE" + bank);
+    
+    return this.http.put<BankAccount>(`${this.apiServerUrl}/appUser/bank/${this.getUserEmail()}`, bank);
+  }
+
+  createBank(bank: BankAccount): Observable<BankAccount> {
+    console.log("bank CREATED IN SERVICE FILE " + bank);
+    
+    return this.http.post<BankAccount>(`${this.apiServerUrl}/appUser/bank/${this.getUserEmail()}`, bank);
+  }
+
+
+  createUser(bank: BankAccount): Observable<BackEndUser> {
+    const backEndUser: BackEndUser = {
+      email: this.getUserEmail(),
+      nickName: this.getUserName(),
+      password: "0000000",
+      bankAccount: bank
+      
+    }
+      
+    return this.http.post<BackEndUser>(`${this.apiServerUrl}/appUser`, backEndUser)
   }
 }

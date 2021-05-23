@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable, NgZone, SystemJsNgModuleLoader } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -24,15 +24,22 @@ export class OrderService {
     ) { }
 
   public getOrder(): Observable<Order[]>{
-    return this.http.get <Order[]>(`${this.apiServerUrl}/appUser/Order/${this.authService.getUserEmail()}`)
+    return this.http.get<Order[]>(`${this.apiServerUrl}/appUser/Order/${this.authService.getUserEmail()}`)
   }
 
   public getOpenOrder(): Observable<Order[]>{
-    return this.http.get <Order[]>(`${this.apiServerUrl}/appUser/Order/${this.authService.getUserEmail()}`)
+    return this.http.get<Order[]>(`${this.apiServerUrl}/appUser/Order/${this.authService.getUserEmail()}`)
   }
 
   public sellOrder(order: Order): Observable<Order>{
-    return this.http.post <Order>(`${this.apiServerUrl}/orderOfSelling/`,order);
+    order.seller = this.authService.getUserEmail();
+    console.log("order service is calling " + order.seller);
+    return this.http.post<Order>(`${this.apiServerUrl}/orderOfSelling`,order);
+  }
+
+  public buyOrder(order: Order): Observable<Order>{
+    order.buyer = this.authService.getUserEmail();
+    return this.http.post<Order>(`${this.apiServerUrl}/orderOfBuying`,order);
   }
 
 }
