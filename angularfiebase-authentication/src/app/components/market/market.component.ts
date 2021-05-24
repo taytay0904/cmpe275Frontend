@@ -27,7 +27,7 @@ export class MarketComponent implements OnInit {
   }
 
   public getOpendOrders(): void {
-    this.orderService.getOrder().subscribe(
+    this.orderService.getOpenOrder().subscribe(
       (response: Order[] ) => {
         this.openOrders = response;
        //console.log( "order is" + this.orders);
@@ -45,7 +45,7 @@ export class MarketComponent implements OnInit {
         buyOrderForm.reset();
       },
       (error: HttpErrorResponse)=>{
-        alert(error.message);
+        alert(error.error);
         buyOrderForm.reset();
       });
     
@@ -61,7 +61,7 @@ export class MarketComponent implements OnInit {
         sellOrderForm.reset();
       },
       (error: HttpErrorResponse)=>{
-        alert(error.message);
+        alert(error.error);
         sellOrderForm.reset();
       });
 

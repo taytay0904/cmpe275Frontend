@@ -79,9 +79,9 @@
                                                 <th>Product</th>
                                                 <th>Qty</th>
                                                 <th>Price</th>
-                                                <!-- <th>Buying Qty</th> -->
-                                                <th>Total</th>
                                                 <th>Service fee</th>
+                                                <th>Total</th>
+                                                
                                             </tr>
                                             </thead>
 
@@ -90,19 +90,14 @@
                                             <tbody *ngFor = "let order of openOrders">
                                                 <tr>
                                                     <!-- <td><img src="https://via.placeholder.com/400x200/FFB6C1/000000" class="img-cart"></td> -->
-                                                    <td><strong>Bitcoin </strong><p>Selling member : {{order?.id}}</p></td>
+                                                    <td><strong>Bitcoin </strong><p *ngIf = "order.seller">Selling member: {{order?.seller}} </p> 
+                                                      <p *ngIf = "order.buyer">Buying member: {{order?.buyer}} </p></td>
                             
                                                     <td>{{order.bitcoinAmount}}</td>
                                                     <td>${{order.bitcoinPrice}}</td>
-                                                    <!-- <td>
-                                                        <form class="form-inline">
-                                                            <input class="form-control" type="text" value="1">
-                                                            <button class="btn btn-default" ><i class="fa fa-plus"></i></button>
-                                                            <a href="#" class="btn btn-primary" rel="tooltip" ><i class="fa fa-trash-o"></i></a>
-                                                        </form>
-                                                    </td> -->
-                                                    <td>${{order.bitcoinAmount * order.bitcoinPrice}}</td>
                                                     <td>$2.00</td>
+                                                    <td>${{order.bitcoinAmount * order.bitcoinPrice + 2}}</td>
+                                                    
                                                 </tr>
                                                 <!-- <tr>
                                                     <td><strong>Bitcoin</strong><p>Selling member : bob</p></td>
@@ -293,7 +288,7 @@
 
                                 
                                           <td>
-                                            <form class="form-group"  #buyOrderForm = "ngForm" (ngSubmit) = "buyOrder(buyOrderForm)">
+                                            <form class="form-group"  #buyOrderForm="ngForm" (ngSubmit)= "buyOrder(buyOrderForm)">
                                                   
                                               <p>order type</p>
                                               <select class="form-group" ngModel name= "type" id = "type">
@@ -301,8 +296,8 @@
                                                   <option value="marketOrder">Market Order</option> 
                                                 </select>
 
-                                              <p>Selling Qty</p>
-                                              <input class="form-control" type="text" name= "bitcoinAmount" id = "bitcoinAmount">
+                                              <p>Buying Qty</p>
+                                              <input class="form-control" type="number" ngModel name= "bitcoinAmount" id = "bitcoinAmount">
 
 
                                               <p>Currency Type	</p>
@@ -314,8 +309,8 @@
                                                 <option value="RMB">RMB</option> 
                                               </select>
 
-                                              <p>Selling Price</p>
-                                              <input class="form-control" type="text" step = "any" ngModel  name= "bitcoinPrice" id = "bitcoinPrice">
+                                              <p>Buying Price</p>
+                                              <input class="form-control" type="number" step = "any" ngModel  name= "bitcoinPrice" id = "bitcoinPrice">
                                               <button class="btn btn-default" id="buyOrder-form" ><i class="fa fa-plus"></i>BUY</button>
 
 

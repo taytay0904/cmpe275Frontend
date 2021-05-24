@@ -28,17 +28,18 @@ export class OrderService {
   }
 
   public getOpenOrder(): Observable<Order[]>{
-    return this.http.get<Order[]>(`${this.apiServerUrl}/appUser/Order/${this.authService.getUserEmail()}`)
+    return this.http.get<Order[]>(`${this.apiServerUrl}/Order/open`)
   }
 
   public sellOrder(order: Order): Observable<Order>{
     order.seller = this.authService.getUserEmail();
-    console.log("order service is calling " + order.seller);
+    console.log("selling order service is calling " + order.seller);
     return this.http.post<Order>(`${this.apiServerUrl}/orderOfSelling`,order);
   }
 
   public buyOrder(order: Order): Observable<Order>{
     order.buyer = this.authService.getUserEmail();
+    console.log("buying order service is calling " + order.seller);
     return this.http.post<Order>(`${this.apiServerUrl}/orderOfBuying`,order);
   }
 
