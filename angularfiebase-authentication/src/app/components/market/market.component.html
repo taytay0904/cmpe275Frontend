@@ -69,6 +69,8 @@
                                             Market Price: $45
                                         </h3>
                                     </div>
+                                    
+                                    
                                     <div class="panel-body"> 
                                         <div class="table-responsive">
                                         <table class="table">
@@ -116,23 +118,10 @@
                                                     <td colspan="6">&nbsp;</td>
                                                 </tr>
 
-                                                <!-- <tr>
-                                                    <td colspan="4" class="text-right">Service fee</td>
-                                                    <td>$2.00</td>
-                                                </tr> -->
-
-                                                <!-- <tr>
-                                                    <td colspan="4" class="text-right">Total Product</td>
-                                                    <td>$86.00</td>
-                                                </tr>
-                                               
-                                                <tr>
-                                                    <td colspan="4" class="text-right"><strong>Total</strong></td>
-                                                    <td>$88.00</td>
-                                                </tr> -->
+                                            
                                             </tbody>
                                         </table>
-
+<!-- 
 
                                         <table class="table">
                                             <thead>
@@ -146,7 +135,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr>                            
-                                                    <!-- <td>
+                                                    <td>
                                                         <form class="form-inline"  #addOrderForm = "ngForm" (ngSubmit) = "sellOrder(addOrderForm)">
                                                             <select class="form-control"  ngModel name= "type" id = "type">
                                                               <option selected="selected" value="limitOrder">Limit Order</option>
@@ -179,18 +168,18 @@
                                                             <input class="form-control" type="text" value="$64.00"  ngModel name= "bitcoinPrice" id = "bitcoinPrice">
                                                             <button class="btn btn-default" id="sellOrder-form" ><i class="fa fa-plus"></i></button>
                                                         </form>
-                                                    </td> -->
+                                                    </td>
                                                    
                                                 </tr>
                                                
                                             </tbody>
-                                        </table>
+                                         </table> -->
 
                                        
 
-                                    </div>
+                                     </div> 
 
-                                       <table class="table">
+                                       <!-- <table class="table">
                                             <thead>
                                             <tr>
                                                 <th>Buying Type</th>
@@ -234,7 +223,6 @@
                                                         <form class="form-inline" #addOrderForm = "ngForm" (ngSubmit) = "buyOrder(addOrderForm)">
                                                             <input class="form-control" type="text" name= "bitcoinPrice" id = "bitcoinPrice">
                                                             <button class="btn btn-default" id="buyOrder-form" ><i class="fa fa-plus"></i></button>
-                                                            <!-- <a href="#" class="btn btn-primary" rel="tooltip" ><i class="fa fa-trash-o"></i></a> -->
                                                         </form>
                                                     </td>
                                                    
@@ -242,9 +230,11 @@
                                                
                                             </tbody>
                                         </table>
+                                
+ -->
                                 </div>
+                               
                                 </div>
-
 
                                   <!-- id: Int32Array;
                                             seller: Int32Array;
@@ -272,17 +262,17 @@
                                           <td>
                                               <form class="form-group" #sellOrderForm ="ngForm" (ngSubmit) = "sellOrder(sellOrderForm)">
                                                 
-
+                                                <p>order type</p>
                                                 <select class="form-group" ngModel name= "type" id = "type">
                                                     <option selected="selected" value="limitOrder">Limit Order</option>
                                                     <option value="marketOrder">Market Order</option> 
                                                 </select>
 
+                                                <p>Selling Qty</p>
+                                                <input class="form-control" type="number" step = "any" ngModel name= "bitcoinAmount" id = "bitcoinAmount">
 
-                                                <input class="form-group" type="text" ngModel name= "bitcoinAmount" id = "bitcoinAmount">
-
-
-                                                <select class="fform-group" ngModel name= "currency" id = "currency">
+                                                <p>Currency Type	</p>
+                                                <select class="form-group" ngModel name= "currency" id = "currency">
                                                   <option selected="selected" value="USD">USD</option>
                                                   <option value="EUR">EUR</option> 
                                                   <option value="GBP">GBP</option> 
@@ -290,8 +280,10 @@
                                                   <option value="RMB">RMB</option> 
                                                 </select>
 
-                                                  <input class="form-group" type="text" ngModel name= "bitcoinPrice" id = "bitcoinPrice">
-                                                  <button class="btn btn-default" id="sellOrder-form" addtype= "submit"><i class="fa fa-plus"></i>SELL</button>
+
+                                                <p>Selling Price</p>
+                                                <input class="form-control" type="number" step = "any"  ngModel name= "bitcoinPrice" id = "bitcoinPrice">
+                                                <button class="btn btn-default" id="sellOrder-form" type= "submit"><i class="fa fa-plus"></i>SELL</button>
 
 
                                               </form>
@@ -303,25 +295,28 @@
                                           <td>
                                             <form class="form-group"  #buyOrderForm = "ngForm" (ngSubmit) = "buyOrder(buyOrderForm)">
                                                   
-                                              <select class="form-control"  name= "type" id = "type">
+                                              <p>order type</p>
+                                              <select class="form-group" ngModel name= "type" id = "type">
                                                   <option selected="selected" value="limitOrder">Limit Order</option>
                                                   <option value="marketOrder">Market Order</option> 
                                                 </select>
 
+                                              <p>Selling Qty</p>
+                                              <input class="form-control" type="text" name= "bitcoinAmount" id = "bitcoinAmount">
 
-                                                <input class="form-control" type="text" name= "bitcoinAmount" id = "bitcoinAmount">
 
+                                              <p>Currency Type	</p>
+                                              <select class="form-group"  ngModel name= "currency" id = "currency">
+                                                <option selected="selected" value="USD">USD</option>
+                                                <option value="EUR">EUR</option> 
+                                                <option value="GBP">GBP</option> 
+                                                <option value="INR">INR</option> 
+                                                <option value="RMB">RMB</option> 
+                                              </select>
 
-                                                <select class="form-control"  name= "currency" id = "currency">
-                                                  <option selected="selected" value="USD">USD</option>
-                                                  <option value="EUR">EUR</option> 
-                                                  <option value="GBP">GBP</option> 
-                                                  <option value="INR">INR</option> 
-                                                  <option value="RMB">RMB</option> 
-                                                </select>
-
-                                                <input class="form-control" type="text" value="$64.00"  name= "bitcoinPrice" id = "bitcoinPrice">
-                                                <button class="btn btn-default" id="buyOrder-form" ><i class="fa fa-plus"></i>BUY</button>
+                                              <p>Selling Price</p>
+                                              <input class="form-control" type="text" step = "any" ngModel  name= "bitcoinPrice" id = "bitcoinPrice">
+                                              <button class="btn btn-default" id="buyOrder-form" ><i class="fa fa-plus"></i>BUY</button>
 
 
                                             </form>

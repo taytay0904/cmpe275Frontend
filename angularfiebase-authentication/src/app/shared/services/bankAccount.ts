@@ -6,10 +6,10 @@ export interface BankAccount {
     //balance: Float32Array;
     address: string,
     primaryCurrency: string,
-    balanceOfUSD: BigInteger,
-    balanceOfEUR: BigInteger,
-    balanceOfGBP: BigInteger,
-    balanceOfINR: BigInteger,
-    balanceOfRMB: BigInteger,
-    balanceOfBitcoin: BigInteger
+    balanceOfUSD: number,
+    balanceOfEUR: number,
+    balanceOfGBP: number,
+    balanceOfINR: number,
+    balanceOfRMB: number,
+    balanceOfBitcoin: number
  }

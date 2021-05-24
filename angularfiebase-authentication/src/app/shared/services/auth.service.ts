@@ -200,6 +200,10 @@ export class AuthService {
     return this.http.put<BankAccount>(`${this.apiServerUrl}/appUser/bank/${this.getUserEmail()}`, bank);
   }
 
+  updateBankbalance(bank: BankAccount): Observable<BankAccount>{
+    return this.http.put<BankAccount>(`${this.apiServerUrl}/appUser/bankBalance/${this.getUserEmail()}`, bank);
+  }
+
   createBank(bank: BankAccount): Observable<BankAccount> {
     console.log("bank CREATED IN SERVICE FILE " + bank);
     
@@ -213,7 +217,6 @@ export class AuthService {
       nickName: this.getUserName(),
       password: "0000000",
       bankAccount: bank
-      
     }
       
     return this.http.post<BackEndUser>(`${this.apiServerUrl}/appUser`, backEndUser)

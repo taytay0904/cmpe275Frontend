@@ -5,7 +5,7 @@ export interface BackEndUser {
    nickName: string,
    password: string,
    bankAccount: BankAccount
-   //balance: Float32Array;
+
 //    address: string,
 //    primaryCurrency: string,
 //    balanceOfUSD: BigInteger,
@@ -15,14 +15,3 @@ export interface BackEndUser {
 //    balanceOfRMB: BigInteger,
 //    balanceOfBitcoin: BigInteger
 }
-// dashboard
-// market
-// orders
-// profile
-
-
-// profile 
-// username....
-// bankinfo
-//
-//

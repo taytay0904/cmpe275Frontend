@@ -28,11 +28,8 @@ export class DashboardComponent implements OnInit {
     this.authService.getUserBankInfo().subscribe(
       (response: BankAccount ) => {
         this.bankAccount = response;
-       console.log( "get bank" + this.bankAccount);
-      }// },
-      // (error: HttpErrorResponse) => {
-      //   alert(error.message);
-      // }
+       console.log( "get bank infomation" + this.bankAccount);
+      }
     )
   }
   ngOnInit() { 
@@ -41,7 +38,7 @@ export class DashboardComponent implements OnInit {
 
   public updateBank(addBankForm: NgForm): void{
     document.getElementById('add-bank-form').click();
-     console.log("addBankForm update" + addBankForm);
+    console.log("addBankForm update" + addBankForm);
     this.authService.updateBank(addBankForm.value).subscribe(
       (response:BankAccount) => {
         console.log("update!!!!! addBankForm" + response);
@@ -55,12 +52,34 @@ export class DashboardComponent implements OnInit {
     
   }
 
+  public updateBankbalance(balance: BankAccount, action: String): void{
+
+
+    if(action == "withdraw"){
+      balance.balanceOfBitcoin = -Math.abs(balance.balanceOfBitcoin);  
+      balance.balanceOfUSD = -Math.abs(balance.balanceOfUSD); 
+      balance.balanceOfEUR = -Math.abs(balance.balanceOfEUR); 
+      balance.balanceOfGBP = -Math.abs(balance.balanceOfGBP); 
+      balance.balanceOfINR = -Math.abs(balance.balanceOfINR); 
+      balance.balanceOfRMB = -Math.abs(balance.balanceOfRMB); 
+    }
+
+    this.authService.updateBankbalance(balance).subscribe(
+      (response:BankAccount) => {
+        console.log("update!!!!! updateBankbalance" + response);
+        this.getBankAccount();
+      },
+      (error: HttpErrorResponse)=>{
+        alert(error.message);
+      });
+  }
+
   public createUser(addBankForm: NgForm): void{
     document.getElementById('add-bank-form').click();
      console.log("createUser update" + addBankForm);
     this.authService.createUser(addBankForm.value).subscribe(
       (response:BackEndUser) => {
-        console.log("update!!!!! addBankForm" + response);
+        console.log("createUser!!!!! " + response);
         this.getBankAccount();
         addBankForm.reset();
       },
