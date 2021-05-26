@@ -133,14 +133,14 @@
                                 <input type="text" ngModel name="description" class="form-control" id="description" placeholder="description" required>
                                 </div>
                                 <div class="form-group">
-                                <label for="phone">Currency</label>
+                                <label for="currency">Currency</label>
                                 <select class="form-group"  ngModel name= "currency" id = "currency">
                                   <option selected="selected" value="USD">USD</option>
                                   <option value="EUR">EUR</option> 
                                   <option value="GBP">GBP</option> 
                                   <option value="INR">INR</option> 
                                   <option value="RMB">RMB</option> 
-                                  <option value="RMB">Bitcoin</option> 
+                                  <option value="Bitcoin">Bitcoin</option> 
                                 </select>
                                 </div>
                                 <div class="form-group">
@@ -219,7 +219,7 @@
                                 <p>Are you sure you want to Cancel this bill ID: {{deleteBill?.id}} Description: {{deleteBill?.description}}?</p>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                    <button (click)="onDeleteEmloyee(deleteBill?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+                                    <button (click)="onDeleteEmloyee(deleteBill.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
                                 </div>
                             </div>
                         </div>
@@ -253,8 +253,8 @@
                               </ul>
                               <div class="card-body">
                                  <div class="float-right btn-group btn-group-sm">
-                                    <button *ngIf = "bill.status !== 'Cancelled'" (click)="accept(bill, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Delete">REJECT</button>
-                                    <button *ngIf = "bill.status !== 'Cancelled'" (click)="reject(bill, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Edit">ACCEPT</button>
+                                    <button *ngIf = "bill.status !== 'Cancelled'" (click)="reject(bill.id)" class="btn btn-primary tooltips" data-placement="top" data-original-title="Delete">REJECT</button>
+                                    <button *ngIf = "bill.status !== 'Cancelled'" (click)="accept(bill.id)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Edit">ACCEPT</button>
                                  </div>
                               </div>
                            </div>

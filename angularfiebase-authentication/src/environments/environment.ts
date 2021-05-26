@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:8080',
+  apiBaseUrl: 'https://thawing-refuge-44397.herokuapp.com/',
   firebase: {
     apiKey: "AIzaSyCwcaGphkecjDWPGeck2hfYokLAywu_mVc",
     authDomain: "cmpe275-59357.firebaseapp.com",
