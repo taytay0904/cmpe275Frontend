@@ -102,8 +102,8 @@
                             
                                                     <td>{{order.bitcoinAmount}}</td>
                                                     <td>${{order.bitcoinPrice}}</td>
-                                                    <td>${{order.bitcoinAmount * order.bitcoinPrice * 0.01}} </td>
-                                                    <td>${{order.bitcoinAmount * order.bitcoinPrice * 1.01}}</td>
+                                                    <td>${{(order.bitcoinAmount * order.bitcoinPrice * 0.01) > 1 ? 1 : (order.bitcoinAmount * order.bitcoinPrice * 0.01) }} </td>
+                                                    <td>${{ (order.bitcoinAmount * order.bitcoinPrice * 0.01) > 1 ? order.bitcoinAmount * order.bitcoinPrice +1 : order.bitcoinAmount * order.bitcoinPrice * 1.01}}</td>
                                                     
                                                 </tr>
                                                 <!-- <tr>
