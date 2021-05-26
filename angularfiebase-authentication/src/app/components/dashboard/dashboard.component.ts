@@ -9,6 +9,7 @@ import { NgForm } from '@angular/forms';
 import { BackEndUser } from 'src/app/shared/services/backEndUser';
 
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -46,7 +47,7 @@ export class DashboardComponent implements OnInit {
         addBankForm.reset();
       },
       (error: HttpErrorResponse)=>{
-        alert(error.message);
+        alert(error.error);
         addBankForm.reset();
       });
     
@@ -56,6 +57,7 @@ export class DashboardComponent implements OnInit {
 
 
     if(action == "withdraw"){
+
       balance.balanceOfBitcoin = -Math.abs(balance.balanceOfBitcoin);  
       balance.balanceOfUSD = -Math.abs(balance.balanceOfUSD); 
       balance.balanceOfEUR = -Math.abs(balance.balanceOfEUR); 
@@ -70,7 +72,7 @@ export class DashboardComponent implements OnInit {
         this.getBankAccount();
       },
       (error: HttpErrorResponse)=>{
-        alert(error.message);
+        alert(error.error);
       });
   }
 
@@ -84,7 +86,7 @@ export class DashboardComponent implements OnInit {
         addBankForm.reset();
       },
       (error: HttpErrorResponse)=>{
-        alert(error.statusText);
+        alert(error.error);
         addBankForm.reset();
       });
     

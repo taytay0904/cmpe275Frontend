@@ -41,6 +41,7 @@ export class MarketComponent implements OnInit {
     this.orderService.buyOrder(buyOrderForm.value).subscribe(
       (response:Order) => {
         console.log("update!!!!! buy order bitcoinAmount" + response);
+        alert("Success");
         this.getOpendOrders();
         buyOrderForm.reset();
       },
@@ -57,6 +58,7 @@ export class MarketComponent implements OnInit {
     this.orderService.sellOrder(sellOrderForm.value).subscribe(
       (response:Order) => {
         console.log("update sell order " + response);
+        alert("Success");
         this.getOpendOrders();
         sellOrderForm.reset();
       },

@@ -99,8 +99,8 @@
                                 </ul>
                                 <div class="card-body">
                                    <div class="float-right btn-group btn-group-sm">
-                                      <a (click)="onOpenModal(bill, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit">Edit</a>
-                                      <a (click)="onOpenModal(bill, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete">Cancel</a>
+                                      <a *ngIf = "bill.status !== 'Cancelled'" (click)="onOpenModal(bill, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit">Edit</a>
+                                      <a *ngIf = "bill.status !== 'Cancelled'" (click)="onOpenModal(bill, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete">Cancel</a>
                                    </div>
                                 </div>
                              </div>
