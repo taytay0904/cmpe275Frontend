@@ -10,6 +10,7 @@ import { VerifyEmailComponent } from '../../components/verify-email/verify-email
 import { AuthGuard } from "../../shared/guard/auth.guard";
 import { OrdersComponent } from 'src/app/components/orders/orders.component';
 import { MarketComponent } from 'src/app/components/market/market.component';
+import { BillComponent } from 'src/app/components/bill/bill.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full'},
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email-address', component: VerifyEmailComponent },
   { path: 'orders', component: OrdersComponent },
-  { path: 'market', component: MarketComponent }
+  { path: 'market', component: MarketComponent },
+  { path: 'bill', component: BillComponent }
 ];
 
 @NgModule({

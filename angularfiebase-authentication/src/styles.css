@@ -1,6 +1,7 @@
 @import 'https://use.fontawesome.com/releases/v5.5.0/css/all.css';
 @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css';
-@import 'https://stackpath.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css';
+/* @import 'https://stackpath.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'; */
+@import 'https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css';
 
 * {
   -webkit-box-sizing: border-box;
@@ -2710,4 +2711,38 @@ body{
 .portlet.box.grey-cararra>.portlet-title>.actions .btn-default>i {
     color: #fff
 }
+
+/*bill*/
+
+a {
+    cursor: pointer;
+  }
+  
+  .navbar {
+    margin-bottom: 30px;
+  }
+  
+  .card {
+    border: none;
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
+    margin-bottom: 30px;
+  }
+  
+  .w-60 {
+    width: 60px;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0 0 10px;
+    font-weight: 600;
+  }
+  
+  
+  
 

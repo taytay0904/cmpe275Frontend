@@ -24,11 +24,15 @@ export class OrderService {
     ) { }
 
   public getOrder(): Observable<Order[]>{
-    return this.http.get<Order[]>(`${this.apiServerUrl}/appUser/Order/${this.authService.getUserEmail()}`)
+    return this.http.get<Order[]>(`${this.apiServerUrl}/order/${this.authService.getUserEmail()}`)
   }
 
   public getOpenOrder(): Observable<Order[]>{
     return this.http.get<Order[]>(`${this.apiServerUrl}/Order/open`)
+  }
+
+  public getTransactions(startDateTime:string, endDateTime:string): Observable<Order[]>{
+    return this.http.get<Order[]>(`${this.apiServerUrl}/transOfUser/${this.authService.getUserEmail()}/${startDateTime}/${endDateTime}`)
   }
 
   public sellOrder(order: Order): Observable<Order>{

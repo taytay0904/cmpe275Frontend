@@ -1,1 +1,287 @@
-<p>bill works!</p>
+<!-- Top navigation -->
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0">
+    </a>
+  </nav>
+  
+  <!-- Sidebar navigation -->
+  <div class="container-fluid" style = "margin-left: 15vh;">
+    <div class="row">
+  
+      <nav class="col-md-2 d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/dashboard">
+                <i class="fas fa-user"></i>User Profile
+              </a>
+            </li>
+            <!-- Calling SignOut() Api from AuthService -->
+            <li class="nav-item">
+              <a class="nav-link" (click)="authService.SignOut()">
+                <i class="fas fa-sign-out-alt"></i>Log out
+              </a>
+            </li>
+             <!-- Go to market -->
+            <li class="nav-item">
+              <a class="nav-link" (click)="authService.marketPage()">
+                <i class="fas fa-sign-out-alt"></i>Market  
+              </a>
+            </li>
+  
+             <!-- Go to Order -->
+             <li class="nav-item">
+              <a class="nav-link " routerLink="/orders">
+                <i class="fas fa-sign-out-alt"></i>Transaction Orders 
+              </a>
+            </li>
+
+               <!-- Go to Order -->
+               <li class="nav-item">
+                <a class="nav-link active" routerLink="/bill">
+                  <i class="fas fa-sign-out-alt"></i>Billing 
+                </a>
+              </li>
+  
+          </ul>
+        </div>
+      </nav>
+  
+      <!-- Main content -->
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="inner-adjust">
+  
+          <div class="pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Billing</h1>
+          </div>
+          <!-- Show user data when logged in -->
+          <div class="row" >
+            <div class="col-md-12">
+              <div class="media">
+                <div class="media-body">
+                  
+
+
+
+
+                    <!--start
+                    -->
+
+
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarColor02">
+                           <ul class="navbar-nav mr-auto">
+                              <li class="nav-item active">
+                                 <a class="nav-link" (click)="onOpenModal(null, 'add')">Add Bill <span class="sr-only">(current)</span></a>
+                              </li>
+                           </ul>
+                        </div>
+                    </nav>
+
+
+                    <div class="container" id="bill-container">
+                        <div class="row">
+                          <div *ngFor="let bill of sendBills" class="col-md-6 col-xl-3">
+                             <div class="card m-b-30">
+                                <div class="card-body row">
+                                   <div class="col-6 card-title align-self-center mb-0">
+                                      <h5>Bill To: {{bill.receiver}}</h5>
+                                      <p class="m-0">Description: {{bill.description}}</p>
+                                   </div>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                   <li class="list-group-item">Amout: {{bill.currency}}{{bill.balance}}</li>
+                                   <li class="list-group-item">Due Date: {{bill.dueDate}} </li>
+                                   <li class="list-group-item">Status: {{bill.status}} </li>
+                                </ul>
+                                <div class="card-body">
+                                   <div class="float-right btn-group btn-group-sm">
+                                      <a (click)="onOpenModal(bill, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit">Edit</a>
+                                      <a (click)="onOpenModal(bill, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete">Cancel</a>
+                                   </div>
+                                </div>
+                             </div>
+                          </div>
+                        </div>
+                    
+
+
+
+
+
+                    <!-- Add Bill Modal -->
+                    <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="addEmployeeModalLabel">Add a Bill</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form #addForm="ngForm" (ngSubmit)="onAddBill(addForm)">
+                                <div class="form-group">
+                                <label for="name">Receiver</label>
+                                <input type="text" ngModel name="receiver" class="form-control" id="receiver" placeholder="Receiver" required>
+                                </div>
+                                <div class="form-group">
+                                <label for="text">Description</label>
+                                <input type="text" ngModel name="description" class="form-control" id="description" placeholder="description" required>
+                                </div>
+                                <div class="form-group">
+                                <label for="phone">Currency</label>
+                                <select class="form-group"  ngModel name= "currency" id = "currency">
+                                  <option selected="selected" value="USD">USD</option>
+                                  <option value="EUR">EUR</option> 
+                                  <option value="GBP">GBP</option> 
+                                  <option value="INR">INR</option> 
+                                  <option value="RMB">RMB</option> 
+                                </select>
+                                </div>
+                                <div class="form-group">
+                                <label for="phone">Balance</label>
+                                <input type="number" ngModel name="balance" class="form-control" id="balance" placeholder="balance" required>
+                                </div>
+                                <div class="form-group">
+                                <label for="phone">Due Date</label>
+                                <input type="date" ngModel name="dueDate" class="form-control" id="dueDate" placeholder="dueDate" required>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" id="add-bill-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Edit Modal -->
+                    <div class="modal fade" id="updateEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="employeeEditModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="updateEmployeeModalLabel">Edit Bill {{editBill?.sender}}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form #editForm="ngForm">
+                                    <div class="form-group">
+                                    <label for="name">Receiver</label>
+                                    <input type="text" ngModel="{{editBill?.receiver}}" name="receiver" class="form-control" id="receiver" aria-describedby="emailHelp" placeholder="Name">
+                                    </div>
+                                    <input type="hidden" ngModel="{{editBill?.id}}" name="id" class="form-control" id="id" placeholder="ID">
+                                    <input type="hidden" ngModel="{{editBill?.status}}" name="status" class="form-control" id="userCode" placeholder="status">
+                                    <div class="form-group">
+                                    <label for="email">Description</label>
+                                    <input type="text" ngModel="{{editBill?.description}}" name="description" class="form-control" id="description" placeholder="Description">
+                                    </div>
+                                    <div class="form-group">
+                                    <label for="phone">Currency</label>
+                                    <input type="text" ngModel="{{editBill?.currency}}" name="currency" class="form-control" id="currency" placeholder="currency">
+                                    </div>
+                                    <div class="form-group">
+                                    <label for="phone">Balance</label>
+                                    <input type="number" ngModel="{{editBill?.balance}}" name="balance" class="form-control" id="balance" name="balance" placeholder="balance">
+                                    </div>
+                                    <div class="form-group">
+                                    <label for="phone">Due Date</label>
+                                    <input type="date" ngModel="{{editBill?.dueDate}}" name="dueDate" class="form-control" id="dueDate" placeholder="dueDate">
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                                    <button (click)="onUpdateEmloyee(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Delete Modal -->
+                    <div class="modal fade" id="deleteEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModelLabel">Cancel this bill</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to Cancel this bill ID: {{deleteBill?.id}} Description: {{deleteBill?.description}}?</p>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                    <button (click)="onDeleteEmloyee(deleteBill?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                   
+                </div>
+
+        
+
+
+                    <!--end-->
+
+
+
+
+                    <!--  for receiving the bill part-->
+                    <div class="row">
+                        <div *ngFor="let bill of receiveBills" class="col-md-6 col-xl-3">
+                           <div class="card m-b-30">
+                              <div class="card-body row">
+                                 <div class="col-6 card-title align-self-center mb-0">
+                                    <h5>Sending From Name: {{bill.sender}}</h5>
+                                    <p class="m-0">Description: {{bill.description}}</p>
+                                 </div>
+                              </div>
+                              <ul class="list-group list-group-flush">
+                                 <li class="list-group-item">Amout: {{bill.currency}}{{bill.balance}}</li>
+                                 <li class="list-group-item">Due Date: {{bill.dueDate}} </li>
+                                 <li class="list-group-item">Status: {{bill.status}} </li>
+                              </ul>
+                              <div class="card-body">
+                                 <div class="float-right btn-group btn-group-sm">
+                                    <a (click)="onOpenModal(bill, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit">Edit</a>
+                                    <a (click)="onOpenModal(bill, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="receiveBills?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+                        <div class="alert alert-info" role="alert">
+                          <h4 class="alert-heading">NO BILLS NEED TO PAY!</h4>
+                          <p>No bills requesting from other users were found.</p>
+                        </div>
+                    </div>
+
+                   
+
+                    
+                   
+                   
+
+                </div>
+              </div>
+            </div>
+          </div>
+  
+  
+        </div>
+      </main>
+  
+    </div>
+  </div>
+

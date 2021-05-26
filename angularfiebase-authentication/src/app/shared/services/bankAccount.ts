@@ -2,7 +2,7 @@ export interface BankAccount {
     bankName: string;
     country: string;
     accountNumber: string;
-    owernName: string;
+    ownerNaturalName: string;
     //balance: Float32Array;
     address: string,
     primaryCurrency: string,

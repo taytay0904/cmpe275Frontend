@@ -32,7 +32,14 @@
              <!-- Go to Order -->
              <li class="nav-item">
               <a class="nav-link" routerLink="/orders">
-                <i class="fas fa-sign-out-alt"></i>Open Orders  
+                <i class="fas fa-sign-out-alt"></i>Transaction Orders  
+              </a>
+            </li>
+
+            <!-- Go to bill -->
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/bill">
+                <i class="fas fa-sign-out-alt"></i>Billing 
               </a>
             </li>
   
@@ -66,7 +73,7 @@
                                 <div class="panel panel-info panel-shadow">
                                     <div class="panel-heading">
                                         <h3>
-                                            Market Price: $45
+                                            Market Price: $100
                                         </h3>
                                     </div>
                                     
@@ -277,7 +284,7 @@
 
 
                                                 <p>Selling Price</p>
-                                                <input class="form-control" type="number" step = "any"  ngModel name= "bitcoinPrice" id = "bitcoinPrice">
+                                                <input class="form-control" type="number" step = "any" min="0" ngModel name= "bitcoinPrice" id = "bitcoinPrice">
                                                 <button class="btn btn-default" id="sellOrder-form" type= "submit"><i class="fa fa-plus"></i>SELL</button>
 
 
@@ -310,7 +317,7 @@
                                               </select>
 
                                               <p>Buying Price</p>
-                                              <input class="form-control" type="number" step = "any" ngModel  name= "bitcoinPrice" id = "bitcoinPrice">
+                                              <input class="form-control" type="number" step = "any" min="0" ngModel  name= "bitcoinPrice" id = "bitcoinPrice">
                                               <button class="btn btn-default" id="buyOrder-form" ><i class="fa fa-plus"></i>BUY</button>
 
 

@@ -32,9 +32,16 @@
            <!-- Go to Order -->
            <li class="nav-item">
             <a class="nav-link" (click)="authService.OderPage()">
-              <i class="fas fa-sign-out-alt"></i>Open Orders
+              <i class="fas fa-sign-out-alt"></i>Transaction Orders
             </a>
           </li>
+
+            <!-- Go to bill -->
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/bill">
+                <i class="fas fa-sign-out-alt"></i>Billing 
+              </a>
+            </li>
 
         </ul>
       </div>
@@ -42,20 +49,22 @@
 
     <!-- Main content -->
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      
       <div class="inner-adjust">
 
         <div class="pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">User Profile</h1>
+         
         </div>
         <!-- Show user data when logged in -->
         <div class="row" *ngIf="authService.userData as user">
           <div class="col-md-12">
             <div class="media">
-              <!-- <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}"
-                alt="{{user.displayName}}"> -->
+             
+              
               <div class="media-body">
                 
                 <div class="container " > 
+                
 
                       <div class="col-md-8"> 
                         <div class="portlet light bordered">
@@ -76,37 +85,45 @@
 
                                         <p>Primary Currency: {{bankAccount?.primaryCurrency}} </p>
                                         <p>Balance of the primary currency: {{bankAccount?.balanceOfUSD}} {{bankAccount?.primaryCurrency}}</p>
+                                        <p>Balance of EUR: {{bankAccount?.balanceOfEUR}} </p>
+                                        <p>Balance of GBP: {{bankAccount?.balanceOfGBP}} </p>
+                                        <p>Balance of INR: {{bankAccount?.balanceOfINR}} </p>
+                                        <p>Balance of RMB: {{bankAccount?.balanceOfRMB}} </p>
                                         <p>Balance of Bitcoin: {{bankAccount?.balanceOfBitcoin}} </p>
                                         <p>Country: {{bankAccount?.country}}</p>
                                         <p>Bank name: {{bankAccount?.bankName}}</p>
                                         <p>Account number: {{bankAccount?.accountNumber}}</p>
-                                        <p>Owner’s natural name: {{bankAccount?.owernName}}</p>
+                                        <p>Owner’s natural name: {{bankAccount?.ownerNaturalName}}</p>
                                         <p>Owner’s address: {{bankAccount?.address}}</p>
 
                                         <form #balanceForm = "ngForm" >
 
                                             <div class="form-group">
                                               <label for="inputName">Balance Of Bitcoin</label>
-                                              <input type="number" step = "0.01" ngModel name ="balanceOfBitcoin" class="form-control" id="balanceOfBitcoin" placeholder="00.00">
+                                              <input type="number" step = "0.01" min="0" ngModel name ="balanceOfBitcoin" class="form-control" id="balanceOfBitcoin" placeholder="00.00">
                                             </div>
                                             <div class="form-group">
                                               <label for="inputName">Balance Of USD</label>
-                                              <input type="number" step = "0.01" ngModel name ="balanceOfUSD" class="form-control" id="balanceOfUSD" placeholder="00.00">
+                                              <input type="number" step = "0.01" min="0" ngModel name ="balanceOfUSD" class="form-control" id="balanceOfUSD" placeholder="00.00">
                                             </div>
                                             <div class="form-group">
                                               <label for="inputName">Balance Of EUR</label>
-                                              <input type="number" step = "0.01" ngModel name ="balanceOfEUR" class="form-control" id="balanceOfEUR" placeholder="00.00">
+                                              <input type="number" step = "0.01" min="0" ngModel name ="balanceOfEUR" class="form-control" id="balanceOfEUR" placeholder="00.00">
                                             </div>
                                             <div class="form-group">
                                               <label for="inputName">Balance Of GBP</label>
-                                              <input type="number" step = "0.01" ngModel name ="balanceOfGBP" class="form-control" id="balanceOfGBP" placeholder="00.00">
+                                              <input type="number" step = "0.01" min="0" ngModel name ="balanceOfGBP" class="form-control" id="balanceOfGBP" placeholder="00.00">
                                             </div>
                                             <div class="form-group">
                                               <label for="inputName">Balance Of INR</label>
-                                              <input type="number" step = "0.01" ngModel name ="balanceOfINR" class="form-control" id="balanceOfINR" placeholder="00.00">
+                                              <input type="number" step = "0.01" min="0" ngModel name ="balanceOfINR" class="form-control" id="balanceOfINR" placeholder="00.00">
                                             </div>
-                                            <button (click) = "updateBankbalance(balanceForm.value, deposit)" id="deposit-form" type="submit" class="btn btn-default">Deposit</button>
-                                            <button (click) = "updateBankbalance(balanceForm.value, withdraw)" id="withdraw-form" type="submit" class="btn btn-default">Withdraw</button>
+                                            <div class="form-group">
+                                              <label for="inputName">Balance Of RMB</label>
+                                              <input type="number" step = "0.01" min="0" ngModel name ="balanceOfRMB" class="form-control" id="balanceOfRMB" placeholder="00.00">
+                                            </div>
+                                            <button (click) = "updateBankbalance(balanceForm.value,'deposit')" id="deposit-form" type="submit" class="btn btn-default">Deposit</button>
+                                            <button (click) = "updateBankbalance(balanceForm.value, 'withdraw')" id="withdraw-form" type="submit" class="btn btn-default">Withdraw</button>
 
                                         </form>
                                         
@@ -151,7 +168,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                           <label for="inputLastName">Owner’s natural name</label>
-                                                          <input type="text" ngModel name ="owernName" class="form-control" id="owernName" placeholder="Owner’s natural name">
+                                                          <input type="text" ngModel name ="ownerNaturalName" class="form-control" id="ownerNaturalName" placeholder="Owner’s natural name">
                                                         </div>
           
           

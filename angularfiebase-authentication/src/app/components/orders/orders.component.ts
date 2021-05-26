@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, NgZone, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Order } from 'src/app/shared/services/order';
@@ -21,7 +22,7 @@ export class OrdersComponent implements OnInit {
     public ngZone: NgZone) { }
 
   ngOnInit(): void {
-    this.getOrders();
+    this.findTrans(null,null);
   }
 
   public getOrders(): void {
@@ -30,10 +31,20 @@ export class OrdersComponent implements OnInit {
         this.orders = response;
        console.log( "order is" + this.orders);
       }
-      // ,
-      // (error: HttpErrorResponse) => {
-      //   alert(error.message);
-      // }
+    
+    )
+  }
+
+  public findTrans(startTime, endTime): void {
+    this.orderService.getTransactions(startTime, endTime).subscribe(
+      (response: Order[] ) => {
+        this.orders = response;
+       console.log( "order is" + this.orders);
+      }
+      ,
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
     )
   }
 
