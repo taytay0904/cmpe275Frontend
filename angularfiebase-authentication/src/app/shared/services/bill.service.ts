@@ -46,8 +46,16 @@ export class BillService {
 
   public deleteEmployee(billId: number): Observable<any> {
     return this.http.put<any>(`${this.apiServerUrl}/cancelBill/${billId}`,billId);
-    
+   
+  }
 
+  public reject(billId: number): Observable<any> {
+    return this.http.put<any>(`${this.apiServerUrl}/rejectBill/${billId}`,billId);
+   
+  }
+
+  public accept(billId: number): Observable<any> {
+    return this.http.put<any>(`${this.apiServerUrl}/payBill/${billId}`,billId);
    
   }
 

@@ -140,11 +140,12 @@
                                   <option value="GBP">GBP</option> 
                                   <option value="INR">INR</option> 
                                   <option value="RMB">RMB</option> 
+                                  <option value="RMB">Bitcoin</option> 
                                 </select>
                                 </div>
                                 <div class="form-group">
                                 <label for="phone">Balance</label>
-                                <input type="number" ngModel name="balance" class="form-control" id="balance" placeholder="balance" required>
+                                <input type="number" min= "0" ngModel name="balance" class="form-control" id="balance" placeholder="balance" required>
                                 </div>
                                 <div class="form-group">
                                 <label for="phone">Due Date</label>
@@ -252,8 +253,8 @@
                               </ul>
                               <div class="card-body">
                                  <div class="float-right btn-group btn-group-sm">
-                                    <a (click)="onOpenModal(bill, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit">Edit</a>
-                                    <a (click)="onOpenModal(bill, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                                    <button *ngIf = "bill.status !== 'Cancelled'" (click)="accept(bill, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Delete">REJECT</button>
+                                    <button *ngIf = "bill.status !== 'Cancelled'" (click)="reject(bill, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Edit">ACCEPT</button>
                                  </div>
                               </div>
                            </div>

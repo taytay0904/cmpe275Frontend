@@ -118,6 +118,32 @@ public onOpenModal(bill: Bill, mode: string): void {
   button.click();
 }
 
+public reject(billID: number): void {
+  this.billService.reject(billID).subscribe(
+    (response: void) => {
+      console.log(response);
+      alert("success");
+      this.getBills();
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.error);
+    }
+  );
+}
+
+public accept(billID: number): void {
+  this.billService.accept(billID).subscribe(
+    (response: void) => {
+      console.log(response);
+      alert("success");
+      this.getBills();
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.error);
+    }
+  );
+}
+
 }
 
 
